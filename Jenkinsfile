@@ -37,9 +37,9 @@ node {
 
 		withSonarQubeEnv {
 			bat 'mvn clean package sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=17227cfcf3fd516e1839c849e3c23c401b14747b'
-	}
+		}
 
-}
+	}
 }
 
 
