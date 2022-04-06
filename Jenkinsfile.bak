@@ -8,5 +8,33 @@ node {
 		
 		bat 'mvn clean package'
 	}
+
+	stage ('Run unit test')
+	{
+		echo 'Running Unit Tests'
+
+		bat 'mvn clean test -Dtest=HolaControllerTest'
+					
+		step([$class: 'JUnitResultArchiver', testResults: "**/surefire-reports/*.xml"]) 
 			
+	}
+
+	stage ('Run Integration test')
+	{
+		echo 'Running Integration Tests'
+
+		bat 'mvn clean verify'
+									
+		step([$class: 'JUnitResultArchiver', testResults: '**/failsafe-reports/TEST-*.xml'])
+
+	}
+	
+	stage('Calidad de código (SAST)') 
+	{    
+		echo 'Auditando código de WebApp'    
+
+		withSonarQubeEnv {
+			bat 'mvn clean package sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=17227cfcf3fd516e1839c849e3c23c401b14747b'
+	}
+}
 }
