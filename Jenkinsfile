@@ -41,13 +41,14 @@ node {
 
 }
 
-	/**
-	 * Set maven 3 and Java 11 in path
-	 */
-	def setMavenThreeAndJavaEleven() {
-		env.M2_HOME="${tool 'maven-3'}"
-		env.JAVA_HOME="${tool 'jdk11'}"
-		env.PATH="${env.JAVA_HOME}/bin;${env.PATH}"
-		env.PATH="${env.M2_HOME}/bin;${env.PATH}"
-		echo '*** env.PATH: ' + env.PATH
-	}
+
+/**
+ * Set maven 3 and Java 11 in path
+ */
+def setMavenThreeAndJavaEleven() {
+	env.M2_HOME="${tool 'maven-3'}"
+	env.JAVA_HOME="${tool 'jdk11'}"
+	env.PATH="${env.JAVA_HOME}/bin;${env.PATH}"
+	env.PATH="${env.M2_HOME}/bin;${env.PATH}"
+	echo '*** env.PATH: ' + env.PATH
+}
